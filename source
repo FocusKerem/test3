@@ -1,4 +1,4 @@
-local data = require(script:WaitForChild'ClientReplication')(script,script:WaitForChild'Owner'.Value)
+local data = require(script:WaitForChild'ClientReplication')(game.Players.LocalPlayer)
 local req = data.Requests
 
 --// Shortcut Variables \\--
@@ -16,7 +16,7 @@ local IN = Instance.new
 local Plrs = S.Players
 
 
-local Player = data.User
+local Player = game.Players.LocalPlayer
 local Char = req:Pull"Character"
 local Mouse = data.Local:GetMouse();
 local Hum = Char:FindFirstChildOfClass'Humanoid'
@@ -95,7 +95,7 @@ function makeMusic(id,pit,timePos)
 end
 
 req:AddReciever("playMusic",function(id,pitch,timePos)
-	if(data.Local~=data.User)then
+	if(data.Local~=game.Players.LocalPlayer)then
 		makeMusic(id,pitch,timePos)
 	end
 end)
@@ -410,14 +410,14 @@ function GotEffect(data)
 end
 
 function Effect(data)
-	if(data.User==data.Local)then
+	if(game.Players.LocalPlayer==data.Local)then
 		req:Push("Broadcast","effect",data)
 		GotEffect(data)
 	end
 end
 
 req:AddReciever("effect",function(data)
-	if(data.User~=data.Local)then
+	if(game.Players.LocalPlayer~=data.Local)then
 		GotEffect(data)
 	end
 end)
@@ -503,7 +503,7 @@ end
 
 if(req:Pull("sync"))then syncStuff(req:Pull("sync")) end
 
-req:AddReciever("sync",function(syncdata)if(data.User~=data.Local)then syncStuff(syncdata) end end)
+req:AddReciever("sync",function(syncdata)if(game.Players.LocalPlayer~=data.Local)then syncStuff(syncdata) end end)
 
 req:AddReciever("stop",function()
 	script:destroy()
@@ -512,7 +512,7 @@ req:AddReciever("stop",function()
 end)
 
 
-if data.Local ==  data.User then
+if data.Local ==  game.Players.LocalPlayer then
 Player.PlayerGui:WaitForChild("NoNoGui"):WaitForChild("Fuck").MouseButton1Click:Connect(function()
 RequestCharacterChange:FireClient(tostring(Player.PlayerGui:WaitForChild("NoNoGui"):WaitForChild("What").Text))
 end)
@@ -531,7 +531,7 @@ Attack = true
 Countt = 1
 
 game:service'UserInputService'.InputBegan:connect(function(io,gpe)
-if(gpe or data.User~=data.Local)then return end
+if(gpe or game.Players.LocalPlayer~=data.Local)then return end
 if(io.KeyCode==Enum.KeyCode.Z )then
 DoggoLoop = false
 end
@@ -614,7 +614,7 @@ Attack = true
 Countt = 1
 
 game:service'UserInputService'.InputBegan:connect(function(io,gpe)
-if(gpe or data.User~=data.Local)then return end
+if(gpe or game.Players.LocalPlayer~=data.Local)then return end
 if(io.KeyCode==Enum.KeyCode.Z )then
 BJLoop = false
 end
@@ -675,7 +675,7 @@ Attack = true
 Countt = 1
 
 game:service'UserInputService'.InputBegan:connect(function(io,gpe)
-if(gpe or data.User~=data.Local)then return end
+if(gpe or game.Players.LocalPlayer~=data.Local)then return end
 if(io.KeyCode==Enum.KeyCode.Z )then
 CowgirlLoop = false
 end
@@ -758,7 +758,7 @@ Attack = true
 Countt = 1
 
 game:service'UserInputService'.InputBegan:connect(function(io,gpe)
-if(gpe or data.User~=data.Local)then return end
+if(gpe or game.Players.LocalPlayer~=data.Local)then return end
 if(io.KeyCode==Enum.KeyCode.Z )then
 GayLoop = false
 end
@@ -835,7 +835,7 @@ end
 
 
 game:service'UserInputService'.InputBegan:connect(function(io,gpe)
-	if(gpe or Attack or data.User~=data.Local)then return end
+	if(gpe or Attack or game.Players.LocalPlayer~=data.Local)then return end
 	
 	if(io.KeyCode==Enum.KeyCode.Z and Attack == false and Position == "Doggy Style")then
 		DoggoLoop = true
@@ -992,7 +992,7 @@ while wait() do
 		end
 
 		
-	if(data.User==data.Local)then
+	if(game.Players.LocalPlayer==data.Local)then
 		local syncStuff={
 			NeutralAnims;
 			legAnims;
@@ -1006,4 +1006,4 @@ while wait() do
 		}
 		req:Push("SetVariableAndBroadcast","sync",syncStuff)
 	end	
-end
+end9
