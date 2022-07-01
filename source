@@ -17,8 +17,8 @@ local Plrs = S.Players
 
 
 local Player = game.Players.LocalPlayer
-local Char = req:Pull"Character"
-local Mouse = data.Local:GetMouse();
+local Char = Player.Character
+local Mouse = Player:GetMouse();
 local Hum = Char:FindFirstChildOfClass'Humanoid'
 local Torso = Char.Torso
 local RArm = Char["Right Arm"]
@@ -1006,4 +1006,4 @@ while wait() do
 		}
 		req:Push("SetVariableAndBroadcast","sync",syncStuff)
 	end	
-end9
+end
