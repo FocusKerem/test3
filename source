@@ -16,7 +16,7 @@ local IN = Instance.new
 local Plrs = S.Players
 
 
-local Player = game.Players.LocalPlayer
+local Player = data.User
 local Char = req:Pull"Character"
 local Mouse = data.Local:GetMouse();
 local Hum = Char:FindFirstChildOfClass'Humanoid'
@@ -514,11 +514,11 @@ end)
 
 if data.Local ==  data.User then
 Player.PlayerGui:WaitForChild("NoNoGui"):WaitForChild("Fuck").MouseButton1Click:Connect(function()
-RequestCharacterChange:FireServer(tostring(Player.PlayerGui:WaitForChild("NoNoGui"):WaitForChild("What").Text))
+RequestCharacterChange:FireClient(tostring(Player.PlayerGui:WaitForChild("NoNoGui"):WaitForChild("What").Text))
 end)
 
 Player.PlayerGui:WaitForChild("NoNoGui"):WaitForChild("Ass").MouseButton1Click:Connect(function()
-PushHostChange:FireServer(tostring(Player.PlayerGui:WaitForChild("NoNoGui"):WaitForChild("What").Text))
+PushHostChange:FireClient(tostring(Player.PlayerGui:WaitForChild("NoNoGui"):WaitForChild("What").Text))
 end)
 
 
@@ -852,13 +852,13 @@ game:service'UserInputService'.InputBegan:connect(function(io,gpe)
 	end
 	
 	if(io.KeyCode==Enum.KeyCode.One and Attack == false and Position ~= "Doggy Style")then
-		PositionRemote:FireServer("Doggy Style")
+		PositionRemote:FireClient("Doggy Style")
 	elseif(io.KeyCode==Enum.KeyCode.Two and Attack == false and Position ~= "Blowjob")then
-		PositionRemote:FireServer("Blowjob")
+		PositionRemote:FireClient("Blowjob")
 	elseif(io.KeyCode==Enum.KeyCode.Three and Attack == false and Position ~= "Cowgirl")then
-		PositionRemote:FireServer("Cowgirl")
+		PositionRemote:FireClient("Cowgirl")
 	elseif(io.KeyCode==Enum.KeyCode.Four and Attack == false and Position ~= "FuckMeSidewaysAndCallMeGay")then
-		PositionRemote:FireServer("FuckMeSidewaysAndCallMeGay")
+		PositionRemote:FireClient("FuckMeSidewaysAndCallMeGay")
 	end
 
 end)
